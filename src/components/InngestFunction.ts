@@ -153,7 +153,7 @@ export class InngestFunction<Events extends Record<string, EventPayload>> {
      * user's function has run, we can check the mutated state of these to see
      * if an op has been submitted or not.
      */
-    const [tools, state] = createStepTools();
+    const [tools, state, patterns] = createStepTools();
 
     /**
      * Create args to pass in to our function. We blindly pass in the data and
@@ -162,6 +162,7 @@ export class InngestFunction<Events extends Record<string, EventPayload>> {
     const fnArg = {
       ...(data as EventData<string>),
       tools,
+      patterns,
     } as Partial<HandlerArgs<any, any, any>>;
 
     /**
